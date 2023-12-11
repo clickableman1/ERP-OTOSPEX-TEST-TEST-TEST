@@ -1,0 +1,2906 @@
+swagger: '2.0'
+info:
+  description: ERP-OTOSPEX Online REST API for Testing and Prototyping application. You can perform all major operations with your entities - create, delete and etc.
+  version: 1.0.0
+  title: ERP-OTOSPEX
+
+basePath: /api/
+tags:
+  - name: Auth
+    description: Authorization operations
+
+  - name: users
+    description: users managing API
+
+  - name: suppliers
+    description: suppliers managing API
+
+  - name: invoices
+    description: invoices managing API
+
+  - name: settings
+    description: settings managing API
+
+  - name: orders
+    description: orders managing API
+
+  - name: order_details
+    description: order_details managing API
+
+  - name: purchase_orders
+    description: purchase_orders managing API
+
+  - name: sale_orders
+    description: sale_orders managing API
+
+  - name: parts
+    description: parts managing API
+
+  - name: stocks
+    description: stocks managing API
+
+  - name: services
+    description: services managing API
+
+  - name: service_orders
+    description: service_orders managing API
+
+  - name: vehicle_part_services
+    description: vehicle_part_services managing API
+
+  - name: warehouses
+    description: warehouses managing API
+
+  - name: carts
+    description: carts managing API
+
+  - name: cart_items
+    description: cart_items managing API
+
+  - name: notifications
+    description: notifications managing API
+
+  - name: reputation_history
+    description: reputation_history managing API
+
+  - name: inventory_history
+    description: inventory_history managing API
+
+  - name: customers
+    description: customers managing API
+
+  - name: roles
+    description: roles managing API
+
+  - name: permissions
+    description: permissions managing API
+
+  - name: user_role
+    description: user_role managing API
+
+  - name: role_permission
+    description: role_permission managing API
+
+paths:
+  /auth/signin/local:
+    post:
+      tags:
+        - Auth
+      summary: Logs user into the system
+      description: Logs user into the system
+      operationId: loginUser
+      produces:
+        - application/xml
+        - application/json
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid username/password supplied
+      parameters:
+        - in: body
+          name: body
+          description: Logs user into the system
+          required: true
+          schema:
+            $ref: "#/definitions/Auth"
+  /auth/me:
+    get:
+      tags:
+        - Auth
+      summary: "Get current authorized user info"
+      description: Get current authorized user info
+      operationId: getUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Successful retrieval of current authorized user data
+        '400':
+          description: Invalid username/password supplied
+      security:
+        - bearer: []
+  /auth/signup:
+    post:
+      tags:
+        - Auth
+      summary: Register new user into the system
+      description: 'Register new user into the system'
+      operationId: LogsUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: name
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Successful login
+        '400':
+          description: Invalid username/password supplied
+      security:
+        - api_key: [ ]
+
+  /users:
+    post:
+      tags:
+        - users
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/users"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - users
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - users
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - users
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: users not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /suppliers:
+    post:
+      tags:
+        - suppliers
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/suppliers"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - suppliers
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - suppliers
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - suppliers
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: suppliers not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /invoices:
+    post:
+      tags:
+        - invoices
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/invoices"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - invoices
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - invoices
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - invoices
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: invoices not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /settings:
+    post:
+      tags:
+        - settings
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/settings"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - settings
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - settings
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - settings
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: settings not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /orders:
+    post:
+      tags:
+        - orders
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/orders"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - orders
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - orders
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - orders
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: orders not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /order_details:
+    post:
+      tags:
+        - order_details
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/order_details"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - order_details
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - order_details
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - order_details
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: order_details not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /purchase_orders:
+    post:
+      tags:
+        - purchase_orders
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/purchase_orders"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - purchase_orders
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - purchase_orders
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - purchase_orders
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: purchase_orders not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /sale_orders:
+    post:
+      tags:
+        - sale_orders
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/sale_orders"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - sale_orders
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - sale_orders
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - sale_orders
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: sale_orders not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /parts:
+    post:
+      tags:
+        - parts
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/parts"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - parts
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - parts
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - parts
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: parts not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /stocks:
+    post:
+      tags:
+        - stocks
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/stocks"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - stocks
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - stocks
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - stocks
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: stocks not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /services:
+    post:
+      tags:
+        - services
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/services"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - services
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - services
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - services
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: services not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /service_orders:
+    post:
+      tags:
+        - service_orders
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/service_orders"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - service_orders
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - service_orders
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - service_orders
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: service_orders not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /vehicle_part_services:
+    post:
+      tags:
+        - vehicle_part_services
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/vehicle_part_services"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - vehicle_part_services
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - vehicle_part_services
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - vehicle_part_services
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: vehicle_part_services not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /warehouses:
+    post:
+      tags:
+        - warehouses
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/warehouses"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - warehouses
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - warehouses
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - warehouses
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: warehouses not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /carts:
+    post:
+      tags:
+        - carts
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/carts"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - carts
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - carts
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - carts
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: carts not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /cart_items:
+    post:
+      tags:
+        - cart_items
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/cart_items"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - cart_items
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - cart_items
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - cart_items
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: cart_items not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /notifications:
+    post:
+      tags:
+        - notifications
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/notifications"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - notifications
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - notifications
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - notifications
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: notifications not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /reputation_history:
+    post:
+      tags:
+        - reputation_history
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/reputation_history"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - reputation_history
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - reputation_history
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - reputation_history
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: reputation_history not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /inventory_history:
+    post:
+      tags:
+        - inventory_history
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/inventory_history"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - inventory_history
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - inventory_history
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - inventory_history
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: inventory_history not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /customers:
+    post:
+      tags:
+        - customers
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/customers"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - customers
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - customers
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - customers
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: customers not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /roles:
+    post:
+      tags:
+        - roles
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/roles"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - roles
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - roles
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - roles
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: roles not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /permissions:
+    post:
+      tags:
+        - permissions
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/permissions"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - permissions
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - permissions
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - permissions
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: permissions not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /user_role:
+    post:
+      tags:
+        - user_role
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/user_role"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - user_role
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - user_role
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - user_role
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: user_role not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+  /role_permission:
+    post:
+      tags:
+        - role_permission
+      summary: "Add new item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Add new item
+          required: true
+          schema:
+            $ref: "#/definitions/role_permission"
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    get:
+      tags:
+        - role_permission
+      summary: "Get all item"
+      description: Add new item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The item was successfully added
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    put:
+      tags:
+        - role_permission
+      summary: "Update the data of the selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated object"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        '200':
+          description: The item was successfully updated
+        '405':
+          description: Invalid input data
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+    delete:
+      tags:
+        - role_permission
+      summary: "Delete selected item"
+      description: Update the data of the selected item
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: "id"
+          in: path
+          description: "id that need to be updated"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+        '405':
+          description: role_permission not found
+        '500':
+          description: Some server error
+      security:
+        - bearer: [ ]
+
+definitions:
+  Auth:
+    type: object
+    properties:
+      email:
+        type: "string"
+        example: "admin@flatlogic.com"
+      password:
+        type: "string"
+        example: "password"
+    xml:
+      name: Auth
+
+  users:
+    type: object
+    properties:
+
+      firstName:
+        type: "true"
+
+      lastName:
+        type: "true"
+
+      phoneNumber:
+        type: "true"
+
+      email:
+        type: "true"
+
+    xml:
+      name: users
+
+  suppliers:
+    type: object
+    properties:
+
+      name:
+        type: "true"
+
+      location:
+        type: "true"
+
+      email:
+        type: "true"
+
+      country_of_origin:
+        type: "true"
+
+      phone:
+        type: "true"
+
+      year_established:
+        type: "integer"
+
+      website:
+        type: "true"
+
+    xml:
+      name: suppliers
+
+  invoices:
+    type: object
+    properties:
+
+      issue_date:
+        type: "true"
+
+      due_date:
+        type: "true"
+
+      user_id:
+        type: "true"
+
+      supplier_id:
+        type: "true"
+
+    xml:
+      name: invoices
+
+  settings:
+    type: object
+    properties:
+
+      user_id:
+        type: "true"
+
+      language_id:
+        type: "true"
+
+      currency:
+        type: "true"
+
+    xml:
+      name: settings
+
+  orders:
+    type: object
+    properties:
+
+      user_id:
+        type: "true"
+
+      order_type:
+        type: "true"
+
+      status:
+        type: "true"
+
+    xml:
+      name: orders
+
+  order_details:
+    type: object
+    properties:
+
+      order_id:
+        type: "true"
+
+      part_id:
+        type: "true"
+
+      quantity:
+        type: "integer"
+
+    xml:
+      name: order_details
+
+  purchase_orders:
+    type: object
+    properties:
+
+      order_id:
+        type: "true"
+
+      supplier_id:
+        type: "true"
+
+      invoice_id:
+        type: "true"
+
+    xml:
+      name: purchase_orders
+
+  sale_orders:
+    type: object
+    properties:
+
+      order_id:
+        type: "true"
+
+      invoice_id:
+        type: "true"
+
+    xml:
+      name: sale_orders
+
+  parts:
+    type: object
+    properties:
+
+      name:
+        type: "true"
+
+      description:
+        type: "true"
+
+      barcode:
+        type: "true"
+
+      category:
+        type: "true"
+
+      dimensions:
+        type: "true"
+
+      quantity_in_stock:
+        type: "integer"
+
+      minimum_stock_level:
+        type: "integer"
+
+      manufacturer_id:
+        type: "true"
+
+      supplier_id:
+        type: "true"
+
+    xml:
+      name: parts
+
+  stocks:
+    type: object
+    properties:
+
+      part_id:
+        type: "true"
+
+    xml:
+      name: stocks
+
+  services:
+    type: object
+    properties:
+
+      name:
+        type: "true"
+
+      description:
+        type: "true"
+
+    xml:
+      name: services
+
+  service_orders:
+    type: object
+    properties:
+
+      service_id:
+        type: "true"
+
+      user_id:
+        type: "true"
+
+      status:
+        type: "true"
+
+    xml:
+      name: service_orders
+
+  vehicle_part_services:
+    type: object
+    properties:
+
+      service_id:
+        type: "true"
+
+      part_id:
+        type: "true"
+
+    xml:
+      name: vehicle_part_services
+
+  warehouses:
+    type: object
+    properties:
+
+    xml:
+      name: warehouses
+
+  carts:
+    type: object
+    properties:
+
+    xml:
+      name: carts
+
+  cart_items:
+    type: object
+    properties:
+
+    xml:
+      name: cart_items
+
+  notifications:
+    type: object
+    properties:
+
+      user_id:
+        type: "true"
+
+      content:
+        type: "true"
+
+      status:
+        type: "true"
+
+    xml:
+      name: notifications
+
+  reputation_history:
+    type: object
+    properties:
+
+      action:
+        type: "true"
+
+      reputation_change:
+        type: "true"
+
+    xml:
+      name: reputation_history
+
+  inventory_history:
+    type: object
+    properties:
+
+      part_id:
+        type: "true"
+
+      transaction_type:
+        type: "true"
+
+      transaction_date:
+        type: "true"
+
+      quantity_change:
+        type: "true"
+
+    xml:
+      name: inventory_history
+
+  customers:
+    type: object
+    properties:
+
+      name:
+        type: "true"
+
+      user_id:
+        type: "true"
+
+    xml:
+      name: customers
+
+  roles:
+    type: object
+    properties:
+
+      name:
+        type: "true"
+
+      slug:
+        type: "true"
+
+    xml:
+      name: roles
+
+  permissions:
+    type: object
+    properties:
+
+      name:
+        type: "true"
+
+      slug:
+        type: "true"
+
+    xml:
+      name: permissions
+
+  user_role:
+    type: object
+    properties:
+
+      user_id:
+        type: "true"
+
+      role_id:
+        type: "true"
+
+    xml:
+      name: user_role
+
+  role_permission:
+    type: object
+    properties:
+
+      role_id:
+        type: "true"
+
+      permission_id:
+        type: "true"
+
+    xml:
+      name: role_permission
+
+securityDefinitions:
+  bearer:
+    type: apiKey
+    name: Authorization
+    description: Enter your bearer token in the format **Bearer &lt;token>**
+    in: header
